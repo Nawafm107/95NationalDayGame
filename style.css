@@ -22,59 +22,7 @@
     .quiz_box,
     .result_box,
     .leaderboard_box,
-    .welcome_box,
-    .level_box {
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    .quiz_box header {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        width: 100% !important;
-        padding: 0 0 10px 0 !important;
-        height: auto !important;
-        gap: 0 !important;
-    }
-    .quiz_box header .title {
-        font-size: 18px !important;
-        margin: 0 !important;
-        flex: 1 1 60%;
-        text-align: right !important;
-        padding-right: 10px !important;
-    }
-    .quiz_box header .timer {
-        flex: 1 1 40%;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        gap: 5px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    .quiz_box header .timer .time_left_txt {
-        font-size: 14px !important;
-        margin-left: 5px !important;
-    }
-    .quiz_box header .timer .timer_sec {
-        font-size: 16px !important;
-    }
-}
-@media (max-width: 600px) {
-    .start_btn,
-    .info_box,
-    .quiz_box,
-    .result_box,
-    .leaderboard_box,
-    .welcome_box,
-    .level_box {
+    .welcome_box {
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
@@ -348,8 +296,7 @@ footer .next_btn.show {
     .info_box,
     .quiz_box,
     .result_box,
-    .leaderboard_box,
-    .level_box {
+    .leaderboard_box {
         width: 98vw !important;
         min-width: unset;
         max-width: 99vw;
