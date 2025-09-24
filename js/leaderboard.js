@@ -48,6 +48,11 @@ function showLeaderboard() {
 // زر اغلاق
 leaderboardQuit.onclick = () => {
     leaderboardBox.classList.remove('activeLeaderboard');
+    // إظهار الصفحة الأولى (واجهة البداية)
+    document.querySelector('.start_btn').style.display = 'block';
+    document.querySelector('.quiz_box').classList.remove('activeQuiz');
+    document.querySelector('.result_box').classList.remove('activeResult');
+    document.querySelector('.info_box').classList.remove('activeInfo');
 };
 
 // زر لعرض المتصدرين (يمكنك وضعه في أي مكان مناسب)

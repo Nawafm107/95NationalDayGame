@@ -1,7 +1,12 @@
+// إخفاء كل الصفحات في البداية ما عدا صفحة البداية ولوحة المتصدرين
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.quiz_box').classList.remove('activeQuiz');
+    document.querySelector('.result_box').classList.remove('activeResult');
+    const levelBox = document.querySelector('.level_box');
+    if (levelBox) levelBox.style.display = 'none';
+    document.querySelector('.start_btn').style.display = '';
+});
 const start_btn = document.querySelector(".start_btn button");
-const info_box = document.querySelector(".info_box");
-const exit_btn = info_box.querySelector(".buttons .quit");
-const continue_btn = info_box.querySelector(".buttons .restart");
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
 const option_list = document.querySelector(".option_list");
@@ -9,60 +14,26 @@ const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 
-// زر البداية: عرض info_box أولاً
+// زر البداية: يبدأ اللعبة فعلياً
 start_btn.onclick = ()=>{
-    info_box.classList.add("activeInfo");
-}
+    document.querySelector('.quiz_box').classList.add('activeQuiz');
+    document.querySelector('.start_btn').style.display = 'none';
+    que_count = 0;
+    que_numb = 1;
+    userScore = 0;
+    widthValue = 0;
+    currentLevel = 1;
+    showQuetions(que_count);
+    queCounter(que_numb);
+    clearInterval(counter);
+    clearInterval(counterLine);
+    startTimer(timeValue);
+    startTimerLine(widthValue);
+    timeText.textContent = "الوقت المتبقي";
+    if (next_btn) next_btn.classList.remove("show");
+};
 
-// زر الخروج من info_box
-exit_btn.onclick = ()=>{
-    info_box.classList.remove("activeInfo");
-}
-
-// زر ابدا في info_box: يخفي info_box ويظهر واجهة المستوى السهل
-continue_btn.onclick = ()=>{
-    info_box.classList.remove("activeInfo");
-    // عند بدء المسابقة، إذا كان أول سؤال (المستوى السهل)، أظهر واجهة ترحيب صغيرة ثم ابدأ
-    showEasyLevelWelcome();
-}
-
-function showEasyLevelWelcome() {
-    // إنشاء واجهة المستوى السهل مؤقتاً
-    const welcomeBox = document.createElement('div');
-    welcomeBox.className = 'welcome_box';
-    welcomeBox.innerHTML = `
-        <div class="info-title" style="margin-bottom:10px;"><span>المستوى السهل</span></div>
-        <div class="level-msg" id="easy-level-msg">ستبدأ الآن بالمستوى السهل. بالتوفيق!</div>
-        <div class="buttons">
-            <button id="start-easy-btn">ابدا المستوى السهل</button>
-        </div>
-    `;
-    document.body.appendChild(welcomeBox);
-    welcomeBox.style.display = 'flex';
-    document.getElementById('start-easy-btn').onclick = () => {
-        welcomeBox.remove();
-        quiz_box.classList.add("activeQuiz");
-        showQuetions(0);
-        queCounter(1);
-        startTimer(60);
-        startTimerLine(0);
-        timeText.textContent = "الوقت المتبقي";
-    };
-}
-
-// زر ابدا المستوى السهل: يخفي واجهة المستوى السهل ويبدأ الاختبار
-const startEasyBtn = document.getElementById('start-easy-btn');
-if (startEasyBtn) {
-    startEasyBtn.onclick = () => {
-        document.querySelector('.welcome_box').style.display = 'none';
-        quiz_box.classList.add("activeQuiz");
-        showQuetions(0);
-        queCounter(1);
-        startTimer(60);
-        startTimerLine(0);
-        timeText.textContent = "الوقت المتبقي";
-    };
-}
+// لا يوجد أي تفاعل مع info_box بعد الآن
 
 let timeValue = 60;
 let que_count = 0;
@@ -86,7 +57,6 @@ const quit_quiz = result_box.querySelector(".buttons .quit"); // ازرار ال
 restart_quiz.onclick = ()=>{
     document.querySelector(".quiz_box").classList.add("activeQuiz");
     document.querySelector(".result_box").classList.remove("activeResult");
-    timeValue = 60;
     que_count = 0;
     que_numb = 1;
     userScore = 0;
@@ -99,14 +69,18 @@ restart_quiz.onclick = ()=>{
     startTimer(timeValue);
     startTimerLine(widthValue);
     timeText.textContent = "الوقت المتبقي";
-    next_btn.classList.remove("show");
-}
+    if (next_btn) next_btn.classList.remove("show");
+};
 
 quit_quiz.onclick = ()=>{
-    window.location.reload(); // زر الخروج يعيد تحميل الصفحة
-}
+    document.querySelector('.start_btn').style.display = '';
+    document.querySelector('.quiz_box').classList.remove('activeQuiz');
+    document.querySelector('.result_box').classList.remove('activeResult');
+};
 
 const next_btn = document.querySelector("footer .next_btn");
+// إخفاء زر التالي في البداية دائماً
+if (next_btn) next_btn.classList.remove("show");
 const bottom_ques_counter = document.querySelector("footer .total_que");
 
 
@@ -130,7 +104,7 @@ next_btn.onclick = ()=>{
         startTimer(timeValue);
         startTimerLine(widthValue);
         timeText.textContent = "الوقت المتبقي";
-        next_btn.classList.remove("show");
+    if (next_btn) next_btn.classList.remove("show");
     }else{
         clearInterval(counter);
         clearInterval(counterLine);
@@ -138,18 +112,35 @@ next_btn.onclick = ()=>{
     }
 }
 
+// إنشاء نافذة المستوى إذا لم تكن موجودة
+let level_box = document.querySelector('.level_box');
+if (!level_box) {
+    level_box = document.createElement('div');
+    level_box.className = 'level_box';
+    level_box.innerHTML = `
+        <div class="info-title" id="level-title"></div>
+        <div class="level-msg" id="level-msg"></div>
+        <div class="buttons"><button id="startLevelBtn">استمرار</button></div>
+    `;
+    document.body.appendChild(level_box);
+}
+const startLevelBtn = level_box.querySelector('#startLevelBtn');
+
 function showLevelBox(levelIdx) {
     quiz_box.classList.remove("activeQuiz");
     level_box.style.display = 'flex';
     level_box.classList.add('activeLevelBox');
-    let title = document.getElementById('level-title');
-    let msg = document.getElementById('level-msg');
+    let title = level_box.querySelector('#level-title');
+    let msg = level_box.querySelector('#level-msg');
     if (levelIdx === 1) {
         title.textContent = 'انتهيت من المستوى السهل';
         msg.textContent = 'أحسنت! الآن ستنتقل إلى المستوى المتوسط.';
     } else if (levelIdx === 2) {
         title.textContent = 'انتهيت من المستوى المتوسط';
         msg.textContent = 'رائع! الآن ستنتقل إلى المستوى الصعب.';
+    } else if (levelIdx === 3) {
+        title.textContent = 'انتهيت من المستوى الصعب';
+        msg.textContent = 'لقد أنهيت جميع الأسئلة!';
     }
     startLevelBtn.onclick = () => {
         level_box.style.display = 'none';
@@ -163,7 +154,7 @@ function showLevelBox(levelIdx) {
         startTimer(timeValue);
         startTimerLine(widthValue);
         timeText.textContent = "الوقت المتبقي";
-        next_btn.classList.remove("show");
+    if (next_btn) next_btn.classList.remove("show");
     };
 }
 
@@ -182,6 +173,15 @@ function showQuetions(index){
     const option = option_list.querySelectorAll(".option");
     for(let i=0; i < option.length; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
+    }
+    if (next_btn) next_btn.classList.remove("show");
+    // تغيير نص زر التالي إلى "انهاء" في آخر سؤال
+    if (next_btn) {
+        if (index === questions.length - 1) {
+            next_btn.textContent = "انهاء";
+        } else {
+            next_btn.textContent = "السؤال التالي";
+        }
     }
 }
 
@@ -222,11 +222,18 @@ function optionSelected(answer){
     for(let i=0; i < allOptions; i++){
         option_list.children[i].classList.add("disabled");
     }
-    next_btn.classList.add("show");
+    if (next_btn) next_btn.classList.add("show");
 }
 
+let playerName = null;
 function showResult(){
-    document.querySelector(".info_box").classList.remove("activeInfo");
+    // طلب اسم اللاعب مرة واحدة فقط عند نهاية اللعبة
+    if (!playerName) {
+        playerName = prompt("ادخل اسمك للمتصدرين:");
+        if (!playerName) playerName = "لاعب مجهول";
+        // إرسال الاسم والنتيجة إلى سكريبت الـ module
+        window.dispatchEvent(new CustomEvent('saveScore', { detail: { playerName, score: userScore } }));
+    }
     document.querySelector(".quiz_box").classList.remove("activeQuiz");
     document.querySelector(".result_box").classList.add("activeResult");
     const scoreText = document.querySelector(".result_box .score_text");
@@ -277,7 +284,7 @@ function startTimer(time){
                     startTimer(timeValue);
                     startTimerLine(widthValue);
                     timeText.textContent = "الوقت المتبقي";
-                    next_btn.classList.remove("show");
+                    if (next_btn) next_btn.classList.remove("show");
                 }else{
                     showResult();
                 }
@@ -301,3 +308,10 @@ function queCounter(index){
     let totalQueCounTag = '<span class="total_que"><p> السؤال </p><p>'+ index +'</p><p> من </p><p>'+ questions.length +'</p><p> سؤال </p></span>';
     bottom_ques_counter.innerHTML = totalQueCounTag;
 }
+
+// إخفاء كل الصفحات في البداية ما عدا صفحة البداية ولوحة المتصدرين
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.quiz_box').classList.remove('activeQuiz');
+    document.querySelector('.result_box').classList.remove('activeResult');
+    // info_box لم تعد مستخدمة
+});

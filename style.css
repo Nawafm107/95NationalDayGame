@@ -1,3 +1,11 @@
+/* إجبار إخفاء info_box دائماً إلا إذا كانت activeInfo */
+.info_box {
+    display: none !important;
+}
+.info_box.activeInfo {
+    display: flex !important;
+    flex-direction: column;
+}
 @media (max-width: 600px) {
     .start_btn,
     .info_box,
@@ -141,6 +149,11 @@ footer .next_btn {
     width: auto !important;
     padding: 0 12px !important;
     margin: 0 3px !important;
+    display: none;
+}
+
+footer .next_btn.show {
+    display: inline-block;
 }
 .welcome_box {
     position: absolute;
@@ -519,6 +532,7 @@ body {
     display: block;
     color: #109204;
     background: #fff;
+    padding: 10;
 }
 footer .next_btn:hover{
     background: #0263ca;

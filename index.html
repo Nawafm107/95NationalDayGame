@@ -14,22 +14,6 @@
         <button class="show-leaderboard-btn" style="margin-top:15px;width:100%">عرض المتصدرين</button>
     </div>
 
-    <!-- المعلومات أولاً -->
-    <div class="info_box">
-        <div class="info-title"><span>بعض قوانين المسابقة</span></div>
-        <div class="info-list">
-            <div class="info">1. لديكم <span>دقيقة واحدة</span> للاجابة .</div>
-            <div class="info">2. كلما زادت نقاطك يزيد مركزك بالترتيب .</div>
-            <div class="info">3. بالتوفيق للجميع.</div>
-        </div>
-        <div class="buttons">
-            <button class="quit">اخرج</button>
-            <button class="restart">ابدا</button>
-        </div>
-    </div>
-
-
-
     <div class="quiz_box">
         <header>
             <div class="title">عزنا بطبعنا</div>
@@ -138,25 +122,14 @@
         }, { onlyOnce: true });
     }
 
-    // --- حفظ النتيجة عند نهاية المسابقة ---
-    // مراقبة ظهور صندوق النتيجة
-    const observer = new MutationObserver(() => {
-        const resultBox = document.querySelector('.result_box.activeResult');
-        if (resultBox) {
-            // طلب اسم اللاعب
-            let playerName = prompt('ادخل اسمك ليتم حفظ نتيجتك في لوحة المتصدرين:');
-            if (playerName && playerName.trim().length > 0) {
-                // استخراج النتيجة من الصندوق
-                let scoreText = resultBox.querySelector('.score_text');
-                let scoreMatch = scoreText && scoreText.textContent.match(/(\d+)/g);
-                if (scoreMatch && scoreMatch.length > 0) {
-                    let score = parseInt(scoreMatch[0]);
-                    set(ref(db, 'scores/' + playerName), score);
-                }
-            }
-        }
+    // حفظ النتيجة في قاعدة البيانات عند استقبال الحدث من script.js
+    window.addEventListener('saveScore', e => {
+        const { playerName, score } = e.detail;
+        try {
+            set(ref(db, 'scores/' + playerName), score);
+        } catch(e) { /* تجاهل أي خطأ */ }
     });
-    observer.observe(document.body, { subtree: true, attributes: true, attributeFilter: ['class'] });
+
     // --- نهاية كود لوحة المتصدرين ---
     </script>
 
