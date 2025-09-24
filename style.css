@@ -1,3 +1,13 @@
+/* إصلاح ظهور level_box على الجوال والشاشات الصغيرة */
+.level_box {
+    display: none !important;
+}
+.level_box.activeLevelBox {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 /* إجبار إخفاء info_box دائماً إلا إذا كانت activeInfo */
 .info_box {
     display: none !important;
