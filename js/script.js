@@ -144,6 +144,7 @@ function showLevelBox(levelIdx) {
     }
     startLevelBtn.onclick = () => {
         level_box.style.display = 'none';
+        level_box.classList.remove('activeLevelBox'); // إزالة الصنف نهائياً
         quiz_box.classList.add("activeQuiz");
         que_count++;
         que_numb++;
