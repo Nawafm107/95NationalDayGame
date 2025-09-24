@@ -117,180 +117,74 @@ footer .next_btn.show {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%);
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 450px;
-    display: flex;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+    width: 500px;
+    max-width: 95vw;
+    padding: 32px 24px 28px 24px;
+    display: none;
     flex-direction: column;
     align-items: center;
-    padding: 25px 30px;
-    opacity: 1;
-    z-index: 10;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
-.welcome_box .level-msg {
-    font-size: 22px;
-    margin: 10px 0 15px 0;
-    text-align: center;
-    font-weight: normal;
-    display: block;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    text-overflow: clip;
-    line-height: 1.2;
-    direction: rtl;
-}
-.welcome_box .buttons {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.welcome_box .buttons button {
-    margin: 0 10px;
-    height: 45px;
-    padding: 0 20px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid #109204;
-    color: #fff;
-    background: #109204;
-    transition: all 0.3s ease;
-}
-.welcome_box .buttons button:hover {
-    background: #fff;
-    color: #109204;
-    border: 1px solid #109204;
-}
-.start_btn button {
-    background: #fff;
-    color: #109204;
-    border: 1px solid #109204;
-    transition: all 0.3s;
-}
-.start_btn button:hover {
-    background: #109204;
-    color: #fff;
-    border: 1px solid #109204;
-}
-.start_btn #settings-btn {
-    background: #fff !important;
-    color: #109204 !important;
-    border: 1px solid #109204 !important;
-    transition: all 0.3s;
-}
-.start_btn #settings-btn:hover {
-    background: #109204 !important;
-    color: #fff !important;
-    border: 1px solid #109204 !important;
-}
-.start_btn button,
-.start_btn #settings-btn {
-    color: #fff;
-    background: #109204;
-    border: 1px solid #109204;
-    transition: all 0.3s;
-}
-.start_btn button:hover,
-.start_btn #settings-btn:hover {
-    background: #fff;
-    color: #109204;
-    border: 1px solid #109204;
-}
-.level_box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 450px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 25px 30px;
-    opacity: 1;
     z-index: 10;
 }
-.level_box .info-title {
-    height: 60px;
-    width: 100%;
-    border-bottom: 1px solid lightgrey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: 800;
+.welcome_box.activeWelcome {
+    display: flex !important;
+}
+.welcome_box .info-title {
+    font-size: 28px;
+    font-weight: bold;
     margin-bottom: 18px;
     color: #109204;
-    letter-spacing: 1px;
-}
-.level_box .level-msg {
-    font-size: 22px;
-    margin: 10px 0 15px 0;
     text-align: center;
-    font-weight: normal;
-    display: block;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    text-overflow: clip;
-    line-height: 1.2;
-    direction: rtl;
+    width: 100%;
+    border-bottom: 1.5px solid #e0e0e0;
+    padding-bottom: 10px;
 }
-.level_box .buttons {
+.welcome_box .level-msg {
+    font-size: 20px;
+    margin: 24px auto 24px auto;
+    color: #222;
+    text-align: center;
+    line-height: 2.1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 95%;
+    word-break: break-word;
+}
+.welcome_box .level-msg br {
+    display: block;
+    margin-bottom: 8px;
+    content: "";
+}
+@media (min-width: 601px) {
+    .welcome_box .level-msg {
+        max-width: 70%;
+    }
+}
+.welcome_box .buttons {
+    width: 100%;
     display: flex;
     justify-content: center;
-    width: 100%;
 }
-.level_box .buttons button {
-    margin: 0 10px;
-    height: 45px;
-    padding: 0 20px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid #109204;
-    color: #fff;
-    background: #109204;
-    transition: all 0.3s ease;
-}
-.level_box .buttons button:hover {
-        background: #fff;
-        color: #109204;
-        border: 1px solid #109204;
-}
-
-.show-leaderboard-btn {
-    width: 100%;
-    margin: 20px 0 0 0;
-    height: 45px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    border-radius: 5px;
+.welcome_box .buttons button {
+    width: 80%;
+    font-size: 22px;
+    padding: 14px 0;
+    border-radius: 6px;
     border: 1px solid #109204;
     color: #109204;
     background: #fff;
-    transition: all 0.3s ease;
-    display: block;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
 }
-.show-leaderboard-btn:hover {
-    color: #fff;
+.welcome_box .buttons button:hover {
     background: #109204;
+    color: #fff;
 }
 @media (max-width: 600px) {
     .info_box,
@@ -507,30 +401,26 @@ footer .next_btn:hover{
     color: #fff;
 }
 .welcome_box .level-msg {
-    font-size: 22px;
-    margin: 10px 0 15px 0;
+    font-size: 20px;
+    margin: 24px auto 24px auto;
+    color: #222;
     text-align: center;
-    font-weight: normal;
-    display: block;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    text-overflow: clip;
-    line-height: 1.2;
-    direction: rtl;
+    line-height: 2.1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 95%;
+    word-break: break-word;
 }
-@media (max-width: 600px) {
-    .start_btn button,
-    .start_btn .show-leaderboard-btn,
-    .result_box .show-leaderboard-btn,
-    .info_box .buttons button,
-    .quiz_box footer button,
-    .result_box .buttons button,
-    .leaderboard_box .buttons button,
-    .level_box .buttons button {
-        font-size: 18px;
-        height: 3.2rem;
-        margin-bottom: 8px;
+.welcome_box .level-msg br {
+    display: block;
+    margin-bottom: 8px;
+    content: "";
+}
+@media (min-width: 601px) {
+    .welcome_box .level-msg {
+        max-width: 70%;
     }
 }
 .info_box {
@@ -900,4 +790,88 @@ footer button.show {
     margin-bottom: 18px;
     color: #109204;
     letter-spacing: 1px;
+}
+.level_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+    width: 500px;
+    max-width: 95vw;
+    padding: 32px 24px 28px 24px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+.level_box.activeLevelBox {
+    display: flex !important;
+}
+.level_box .info-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    color: #109204;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1.5px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+.level_box .level-msg {
+    font-size: 20px;
+    margin: 24px auto 24px auto;
+    color: #222;
+    text-align: center;
+    line-height: 2.1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 95%;
+    word-break: break-word;
+}
+.level_box .level-msg br {
+    display: block;
+    margin-bottom: 8px;
+    content: "";
+}
+.level_box .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.level_box .buttons button {
+    width: 80%;
+    font-size: 22px;
+    padding: 14px 0;
+    border-radius: 6px;
+    border: 1px solid #109204;
+    color: #109204;
+    background: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.level_box .buttons button:hover {
+    background: #109204;
+    color: #fff;
+}
+@media (max-width: 600px) {
+    .level_box {
+        width: 98vw;
+        padding: 18px 4vw 16px 4vw;
+    }
+    .level_box .info-title {
+        font-size: 20px;
+    }
+    .level_box .level-msg {
+        font-size: 15px;
+    }
+    .level_box .buttons button {
+        font-size: 16px;
+        padding: 10px 0;
+    }
 }

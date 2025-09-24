@@ -13,11 +13,39 @@ const option_list = document.querySelector(".option_list");
 const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
+const info_box = document.querySelector('.info_box');
+const info_quit = info_box.querySelector('.buttons .quit');
+const info_start = info_box.querySelector('.buttons .restart');
+const welcome_box = document.querySelector('.welcome_box');
+const start_easy_btn = welcome_box.querySelector('.start-easy');
 
 // زر البداية: يبدأ اللعبة فعلياً
 start_btn.onclick = ()=>{
-    document.querySelector('.quiz_box').classList.add('activeQuiz');
+    info_box.style.display = 'flex';
+    info_box.classList.add('activeInfo');
     document.querySelector('.start_btn').style.display = 'none';
+};
+
+// زر الخروج من صفحة القوانين
+info_quit.onclick = ()=>{
+    info_box.style.display = 'none';
+    info_box.classList.remove('activeInfo');
+    document.querySelector('.start_btn').style.display = '';
+};
+
+// زر ابدأ في صفحة القوانين
+info_start.onclick = ()=>{
+    info_box.style.display = 'none';
+    info_box.classList.remove('activeInfo');
+    welcome_box.style.display = 'flex';
+    welcome_box.classList.add('activeWelcome');
+};
+
+// عند الضغط على زر بدء المستوى السهل تبدأ المسابقة فعلياً
+start_easy_btn.onclick = ()=>{
+    welcome_box.style.display = 'none';
+    welcome_box.classList.remove('activeWelcome');
+    document.querySelector('.quiz_box').classList.add('activeQuiz');
     que_count = 0;
     que_numb = 1;
     userScore = 0;
