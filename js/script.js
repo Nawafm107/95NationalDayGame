@@ -251,6 +251,8 @@ function optionSelected(answer){
     for(let i=0; i < allOptions; i++){
         option_list.children[i].classList.add("disabled");
     }
+    // حذف نص العداد عند ظهور زر التالي
+    if (bottom_ques_counter) bottom_ques_counter.innerHTML = "";
     if (next_btn) next_btn.classList.add("show");
 }
 

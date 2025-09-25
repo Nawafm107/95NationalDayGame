@@ -25,8 +25,17 @@
     .welcome_box {
         top: 50% !important;
         left: 50% !important;
+    footer {
+        height: 60px;
+        padding: 0 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px solid lightgrey;
+        position: relative;
+    }
         transform: translate(-50%, -50%) !important;
-        display: flex !important;
+        /* لا تفرض display هنا، اتركه للصنف active فقط */
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
@@ -40,6 +49,22 @@
         padding: 0 0 10px 0 !important;
         height: auto !important;
         gap: 0 !important;
+    footer .total_que {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        color: #109204;
+        letter-spacing: 0.5px;
+        margin: 0 auto;
+        padding: 0 10px 0 0;
+        height: 25px;
+        width: auto;
+        justify-content: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
     }
     .quiz_box header .title {
         font-size: 18px !important;
@@ -47,6 +72,14 @@
         flex: 1 1 60%;
         text-align: right !important;
         padding-right: 10px !important;
+    footer .next_btn {
+        display: none !important;
+        margin: 0 auto;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 8px;
+    }
     }
     .quiz_box header .timer {
         flex: 1 1 40%;
